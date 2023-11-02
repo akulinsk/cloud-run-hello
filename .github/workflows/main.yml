@@ -76,12 +76,7 @@ jobs:
           token_format: 'access_token'
           workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
           service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' # e.g. - my-service-account@my-project.iam.gserviceaccount.com
-      
-      #For demo purposes print identity token
-      - name: Print token 
-        run: |-
-          gcloud auth print-identity-token
-          
+  
       # Authenticate Docker to Google Cloud Artifact Registry
       - name: Docker Auth
         id: docker-auth
@@ -105,3 +100,8 @@ jobs:
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
         run: echo ${{ steps.deploy.outputs.url }}
+
+      #For demo purposes print identity token
+      - name: Print token 
+        run: |-
+          gcloud auth print-identity-token
